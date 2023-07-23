@@ -12,27 +12,33 @@
 
 ### Solution
 - We will need a stack, and a result arr
-- We will first push all the elements from back side into our stack
+- If we didn't have a circular arr, we can simply traverse from back side and check:
+  - if stack.top()<=currEl, pop and insert currEl
+  - if stack.top()>currEl, then this is answer for currEl, update res[i]
+  - else res[i]=-1
+- In this question, we have a circular arr, so we can just double the existing array and do the exact same thing, we did above
+  - For eg-> arr=[1,2,3,4,3], we will make it arr=[1,2,3,4,3,1,2,3,4,3] and again traverse from back side, answers of last n elements doesn't matter, we just need the first n elements
+- Now, if we simply copy array, that will need extra space, instead of that, we can traverse from 2*n-1 that is double length but, instead of using nums[i] as currEl, we will use nums[i%n] as currEl
+  - So for eg-> arr=[1,2,3,4,3,1,2,3,4,3], if we check the 6th index, its actually same as nums[i%n] i.e., nums[6%5]=nums[1]
 
 ### Code
     public static int[] nextGreaterElements(int[] nums){
+        int n=nums.length;
         Stack<Integer> st= new Stack<>();
-        int[] res= new int[nums.length];
+        int[] res= new int[n];
 
-        //push all the elements of the array to stack from back side
-        for(int i = nums.length - 1; i >= 0; i --) {
-            st.push(nums[i]);
-        }
-
-        for (int i = nums.length-1 ; i >= 0 ; i--) {
-            while (!st.isEmpty() && st.peek() <= nums[i]){
+        for(int i= 2*n-1; i>=0; i--){
+            while (!st.isEmpty() && st.peek()<=nums[i%n]){
                 st.pop();
             }
-            if (st.isEmpty()) res[i]=-1;
-            else{
-                res[i]=st.peek();
+            if (i<n){
+                if (!st.isEmpty()){
+                    res[i]=st.peek();
+                }else{
+                    res[i]=-1;
+                }
             }
-            st.push(nums[i]);
+            st.push(nums[i%n]);
         }
         return res;
     }
@@ -41,8 +47,8 @@
 - NA
 
 ### Other Techniques
-- NA
+- Nested Loops
 
 ### Complexity
-1. Time Complexity - O(V), V is the amount
-2. Space Complexity - O(1)
+1. Time Complexity - O(N)
+2. Space Complexity - O(N)

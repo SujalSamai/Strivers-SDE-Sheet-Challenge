@@ -4,19 +4,19 @@ import java.util.Stack;
 
 public class Code {
     public static void sortStack(Stack<Integer> stack) {
-        if(stack.isEmpty()) return;
-        int num=stack.pop();
+        if(stack.size()==1) return;
+        int temp= stack.pop();
         sortStack(stack);
-        sorting(stack,num);
+        insert(stack, temp);
     }
 
-    public static void sorting(Stack<Integer> stack, int num){
-        if(stack.isEmpty() || stack.peek() < num){
+    public static void insert(Stack<Integer> stack, int num){
+        if(stack.size()==0 || stack.peek()<num){
             stack.push(num);
             return;
         }
-        int n= stack.pop();
-        sorting(stack, num);
-        stack.push(n);
+        int val= stack.pop();
+        insert(stack, num);
+        stack.push(val);
     }
 }

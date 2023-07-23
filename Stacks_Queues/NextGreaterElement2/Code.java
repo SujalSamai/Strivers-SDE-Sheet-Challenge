@@ -9,23 +9,22 @@ public class Code {
         System.out.println(Arrays.toString(nextGreaterElements(nums)));
     }
     public static int[] nextGreaterElements(int[] nums){
+        int n=nums.length;
         Stack<Integer> st= new Stack<>();
-        int[] res= new int[nums.length];
+        int[] res= new int[n];
 
-        //push all the elements of the array to stack from back side
-        for(int i = nums.length - 1; i >= 0; i --) {
-            st.push(nums[i]);
-        }
-
-        for (int i = nums.length-1 ; i >= 0 ; i--) {
-            while (!st.isEmpty() && st.peek() <= nums[i]){
+        for(int i= 2*n-1; i>=0; i--){
+            while (!st.isEmpty() && st.peek()<=nums[i%n]){
                 st.pop();
             }
-            if (st.isEmpty()) res[i]=-1;
-            else{
-                res[i]=st.peek();
+            if (i<n){
+                if (!st.isEmpty()){
+                    res[i]=st.peek();
+                }else{
+                    res[i]=-1;
+                }
             }
-            st.push(nums[i]);
+            st.push(nums[i%n]);
         }
         return res;
     }
