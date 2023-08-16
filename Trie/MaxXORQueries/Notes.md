@@ -12,10 +12,12 @@
     [15,-1,5]
 
 ### Solution
-- We already know how to get maxXOR value for an element X and array. Here, unlike the previous question, he array/list (arr) should contain only the elements which are less than or equal to mi. Our Trie & Node classes will remain exactly same
+- We already know how to get maxXOR value for an element X and array. [Check This Question](https://github.com/SujalSamai/Strivers-SDE-Sheet-Challenge/blob/main/Trie/MaxXORTwoNum/Notes.md) Here, unlike the previous question, he array/list (arr) should contain only the elements which are less than or equal to mi. Our Trie & Node classes will remain exactly same
 - We will initially sort the given 'nums' array
 - Next we will use an array of Offline Queries, in which we will store, mi, xi, index and then sort it according to mi.
+
 ![img_1.png](img_1.png)
+
 - We will also initialise an 'ans' array to store our answers
 - Now we will run a loop for each of the given queries
   - While we are not going out of bound in the 'nums' array & nums[i] is < offlineQueris[i][0], i.e., mi of the first query, then we can just insert nums[i] in our trie (binary bits insertion)
