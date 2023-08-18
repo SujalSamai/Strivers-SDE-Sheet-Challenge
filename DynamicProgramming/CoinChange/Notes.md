@@ -13,7 +13,7 @@
 
 ### Solution
 - Create a dp array of size [n][T+1]. The size of the input array is ‘N’, so the index will always lie between ‘0’ and ‘n-1’. The target can take any value between ‘0’ and ‘amount’. Therefore we take the dp array as dp[n][amount+1]
-- Whenever we want to find the answer of particular parameters (say f(ind,target)), we first check whether the answer is already calculated using the dp array(i.e dp[ind][target]!= -1 ). If yes, simply return the value from the dp array.\
+- Whenever we want to find the answer of particular parameters (say f(ind,target)), we first check whether the answer is already calculated using the dp array(i.e dp[ind][target]!= -1 ). If yes, simply return the value from the dp array.
 - We can either take a particular denomination of coin or not take it
 - Not Take: When we don't take a denomination, we will simply decrement our index & move to next denomination
 - Take: If the current denomination is <= amount, then we can take the current denomination, we will add one to our answer, and decrease the amount. But we won't decrement the index as we have unlimited supply of each coin
